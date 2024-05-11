@@ -15,4 +15,3 @@ del my_dict["dict"]["color"]
 my_dict["set"].add("new element")
 my_dict["set"].remove("cat")
 print(my_dict)
-
