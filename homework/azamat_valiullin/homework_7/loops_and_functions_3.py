@@ -12,4 +12,3 @@ def total_number():
 
 
 total_number()
-
