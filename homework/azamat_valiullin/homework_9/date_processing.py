@@ -11,5 +11,5 @@ month = python_date.strftime("%B")
 print(month)
 
 
-human_date = python_date.strftime(f"%d.%m.%Y, %I:%M %p ")
+human_date = python_date.strftime(f"%d.%m.%Y, %I:%M")
 print(human_date)
