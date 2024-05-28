@@ -1,7 +1,7 @@
 def repeat_me(func):
     def wrapper(*args, **kwargs):
         quantity = kwargs.pop("quantity", 1)
-        for i in range(quantity):
+        for _ in range(quantity):
             func(*args, **kwargs)
     return wrapper
 
