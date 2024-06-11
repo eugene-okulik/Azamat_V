@@ -1,0 +1,124 @@
+-- Homework
+-- Создайте группу (group)
+
+insert into `groups` (title, start_date, end_date) values
+('Autumation testing in Python', 'May 2024', 'July 2024'),
+('Python programming from scratch', 'April 2024', 'August 2024');
+
+
+-- Создайте студента (student)
+
+insert into students (name, second_name, group_id) values
+('John', 'Doe', '1237'),
+(name, second_name, group_id) values ('Tomas', 'Anderson', '1239');
+
+
+-- Создайте несколько книг (books) и укажите, что ваш созданный студент взял их
+
+insert into books (title, taken_by_student_id) values
+('OOP', '1288'),
+('MS_SQL', '1288'),
+('Selenium WebDriver', '1288');
+
+insert into books (title, taken_by_student_id) values
+('Playwrite', '1290'),
+('OOP', '1290'),
+('Selenium WebDriver', '1290'),
+('MS_SQL', '1290'),
+('Python for beginners', '1290');
+
+
+-- Создайте несколько учебных предметов (subjects)
+
+insert into subjets (title) values
+('Python programming'),
+('Api testing automation'),
+('UI testing automation');
+
+
+-- Создайте по два занятия для каждого предмета (lessons)
+
+insert into lessons (title, subject_id) values
+('python_basics', '1705'),
+('conditions_and_loops', '1705');
+
+insert into lessons (title, subject_id) values
+('database', '1706'),
+('csv_files', '1706');
+
+insert into lessons (title, subject_id) values
+('selenium_webdriver', '1707'),
+('playwright_basics', '1707');
+
+
+-- Поставьте своему студенту оценки (marks) для всех созданных вами занятий
+
+insert into marks (value, lesson_id, student_id) values
+('5', '3997', '1288'),
+('5', '3996', '1288'),
+('4', '3995', '1288'),
+('4', '3994', '1288'),
+('-5', '3993', '1288'),
+('-5', '3992', '1288');
+
+insert into marks (value, lesson_id, student_id) values
+('5', '3997', '1290'),
+('4', '3996', '1290'),
+('5', '3995', '1290'),
+('3', '3994', '1290'),
+('-4', '3993', '1290'),
+('4+', '3992', '1290');
+
+
+-- Получите информацию из базы данных:
+-- Все оценки студента
+
+select s.name , s.second_name , m.value , m.lesson_id
+from students s
+left join marks m on s.id = m.student_id
+where name = 'John'
+and second_name = 'Doe';
+
+select s.name , s.second_name , m.value , m.lesson_id
+from students s
+left join marks m on s.id = m.student_id
+where name = 'Tomas'
+and second_name = 'Anderson';
+
+-- Все книги, которые находятся у студента
+
+
+select s.name , s.second_name , b.title
+from students s
+left join books b on s.id = b.taken_by_student_id
+where s.name = 'John'
+and s.second_name = 'Doe';
+
+select s.name , s.second_name , b.title
+from students s
+left join books b on s.id = b.taken_by_student_id
+where s.name = 'Tomas'
+and s.second_name = 'Anderson';
+
+-- Для вашего студента выведите всё, что о нем есть в базе: группа, книги, оценки с названиями занятий
+-- и предметов (всё одним запросом с использованием Join)
+
+select s.name, s.second_name, g.title, g.start_date, g.end_date, s2.title, l.title, l.subject_id,
+m.value, m.lesson_id, b.title
+from students s
+left join `groups` g on s.group_id = g.id
+left join marks m on s.id = m.student_id
+left join lessons l on m.lesson_id = l.id
+left join subjets s2 on l.subject_id = s2.id
+left join books b on s.id = b.taken_by_student_id
+where m.student_id = '1288';
+
+select s.name, s.second_name, g.title, g.start_date, g.end_date, s2.title, l.title, l.subject_id,
+m.value, m.lesson_id, b.title
+from students s
+join `groups` g on s.group_id = g.id
+join marks m on s.id = m.student_id
+join lessons l on m.lesson_id = l.id
+join subjets s2 on l.subject_id = s2.id
+join books b on s.id = b.taken_by_student_id
+where m.student_id = '1290';
