@@ -13,14 +13,10 @@ cursor = db.cursor(dictionary=True)
 
 # Создайте студента (student)
 
-query = "INSERT INTO students (name, second_name) VALUES (%s, %s)"
-values = ('test name', 'test surname')
-cursor.execute(query, values)
-
+cursor.execute("""
+INSERT INTO students (name, second_name, group_id) VALUES (%s, %s, %s)
+""", ('test name', 'test surname', None))
 student_id = cursor.lastrowid
-cursor.execute(f"SELECT * FROM students WHERE id = {student_id}")
-student = cursor.fetchone()
-student_id = student['id']
 print(f"Student id: {student_id}")
 
 # Создайте несколько книг (books) и укажите, что ваш созданный студент взял их
@@ -33,27 +29,12 @@ cursor.executemany(
     ]
 )
 
-cursor.execute("SELECT * FROM books ORDER BY id DESC LIMIT 1")
-book2 = cursor.fetchone()
-book2_id = book2['id']
-print(f"Book2 id: {book2_id}")
-
-
-cursor.execute("SELECT * FROM books ORDER BY id DESC LIMIT 1, 1")
-book1 = cursor.fetchone()
-book1_id = book1['id']
-print(f"Book1 id: {book1_id}")
-
 # Создайте группу (group) и определите своего студента туда
 
 query = "INSERT INTO `groups` (title, start_date, end_date) VALUES (%s, %s, %s)"
 values = ('test group', '2023', '2025')
 cursor.execute(query, values)
-
 group_id = cursor.lastrowid
-cursor.execute(f"SELECT * FROM `groups` WHERE id = {group_id}")
-group = cursor.fetchone()
-group_id = group['id']
 print(f"Group id: {group_id}")
 
 query = "UPDATE students SET group_id = %s WHERE id = %s"
@@ -62,43 +43,31 @@ cursor.execute(query, values)
 
 # Создайте несколько учебных предметов (subjects)
 
-query = "INSERT INTO subjets (title) VALUES (%s)"
-cursor.executemany(
-    query, [
-        ("Test subject1",),
-        ("Test subject2",)
-    ]
-)
+cursor.execute("INSERT INTO subjets (title) VALUES (%s)", ("Test subject1",))
+subject1_id = cursor.lastrowid
+print(f"Subject 1 id: {subject1_id}")
 
-cursor.execute("SELECT * FROM subjets ORDER BY id DESC LIMIT 1")
-subject2 = cursor.fetchone()
-subject2_id = subject2['id']
-print(f"Subject2 id: {subject2_id}")
-
-cursor.execute("SELECT * FROM subjets ORDER BY id DESC LIMIT 1, 1")
-subject1 = cursor.fetchone()
-subject1_id = subject1['id']
-print(f"Subject1 id: {subject1_id}")
+cursor.execute("INSERT INTO subjets (title) VALUES (%s)", ("Test subject2",))
+subject2_id = cursor.lastrowid
+print(f"Subject 2 id: {subject2_id}")
 
 # Создайте по два занятия для каждого предмета (lessons)
 
-query = "INSERT INTO lessons (title, subject_id) values (%s, %s)"
-cursor.executemany(
-    query, [
-        ('test lesson1', subject1_id),
-        ('test lesson2', subject2_id)
-    ]
-)
+cursor.execute("INSERT INTO lessons (title, subject_id) values (%s, %s)", ('test lesson1', subject1_id))
+lesson1_id = cursor.lastrowid
+print(f"Lesson1 id: {lesson1_id}")
 
-cursor.execute("SELECT * FROM lessons ORDER BY id DESC LIMIT 1")
-lesson2 = cursor.fetchone()
-lesson2_id = lesson2["id"]
+cursor.execute("INSERT INTO lessons (title, subject_id) values (%s, %s)", ('test lesson2', subject1_id))
+lesson2_id = cursor.lastrowid
 print(f"Lesson2 id: {lesson2_id}")
 
-cursor.execute("SELECT * FROM lessons ORDER BY id DESC LIMIT 1, 1")
-lesson1 = cursor.fetchone()
-lesson1_id = lesson1['id']
-print(f"Lesson1 id: {lesson1_id}")
+cursor.execute("INSERT INTO lessons (title, subject_id) values (%s, %s)", ('test lesson3', subject2_id))
+lesson3_id = cursor.lastrowid
+print(f"Lesson3 id: {lesson3_id}")
+
+cursor.execute("INSERT INTO lessons (title, subject_id) values (%s, %s)", ('test lesson4', subject2_id))
+lesson4_id = cursor.lastrowid
+print(f"Lesson4 id: {lesson4_id}")
 
 
 # Поставьте своему студенту оценки (marks) для всех созданных вами занятий
@@ -107,19 +76,12 @@ query = "INSERT INTO marks (value, lesson_id, student_id) VALUES (%s, %s, %s)"
 cursor.executemany(
     query, [
         ('test value1', lesson1_id, student_id,),
-        ('test value2', lesson2_id, student_id,)
+        ('test value2', lesson2_id, student_id,),
+        ('test value3', lesson3_id, student_id,),
+        ('test value4', lesson4_id, student_id,)
     ]
 )
 
-cursor.execute("SELECT * FROM marks ORDER BY id DESC LIMIT 1")
-marks2 = cursor.fetchone()
-marks2_id = marks2['id']
-print(f"Marks2 id: {marks2_id}")
-
-cursor.execute("SELECT * FROM marks ORDER BY id DESC LIMIT 1, 1")
-marks1 = cursor.fetchone()
-marks1_id = marks1['id']
-print(f"Marks1 id: {marks1_id}")
 db.commit()
 
 # Получите информацию из базы данных:
