@@ -87,13 +87,14 @@ db.commit()
 # Получите информацию из базы данных:
 # Все оценки студента
 
-student_grades = f"""
+student_grades = """
 SELECT s.id, s.name , s.second_name , m.value , m.lesson_id
 FROM students s
 INNER JOIN marks m ON s.id = m.student_id
-WHERE s.id = {student_id};
+WHERE s.id = %s;
 """
-cursor.execute(student_grades)
+
+cursor.execute(student_grades, (student_id,))
 for student_grades in cursor.fetchall():
     print(f"Student grades: {student_grades}")
 
@@ -101,14 +102,14 @@ print("*" * 200)
 
 # Все книги, которые находятся у студента
 
-student_books = f"""
+student_books = """
 SELECT s.id, s.name , s.second_name , b.title
 FROM students s
 RIGHT JOIN books b on s.id = b.taken_by_student_id
-WHERE s.id = {student_id};
+WHERE s.id = %s;
 """
 
-cursor.execute(student_books)
+cursor.execute(student_books, (student_id,))
 for student_books in cursor.fetchall():
     print(f"Student books: {student_books}")
 
@@ -119,7 +120,7 @@ print("*" * 200)
 и предметов (всё одним запросом с использованием Join)
 """
 
-student_all = f"""
+student_all = """
 SELECT s.id, s.name, s.second_name, g.title, g.start_date, g.end_date, s2.title, l.title, l.subject_id,
 m.value, m.lesson_id, b.title
 FROM students s
@@ -128,9 +129,9 @@ left join marks m on s.id = m.student_id
 left join lessons l on m.lesson_id = l.id
 left join subjets s2 on l.subject_id = s2.id
 left join books b on s.id = b.taken_by_student_id
-WHERE s.id = {student_id};
+WHERE s.id = %s;
 """
-cursor.execute(student_all)
+cursor.execute(student_all, (student_id,))
 for student_all in cursor.fetchall():
     print(f"Student all: {student_all}")
 
