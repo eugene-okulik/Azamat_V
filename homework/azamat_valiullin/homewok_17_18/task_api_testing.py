@@ -84,7 +84,7 @@ def update_gadget_name():
 def delete_gadget():
     gadget_id = new_gadget_id()
     response = requests.delete(f"https://api.restful-api.dev/objects/{gadget_id}")
-    assert response.status_code == 200,  "The status code isn't correct"
+    assert response.status_code == 200, "The status code isn't correct"
     print(response.status_code)
 
 
