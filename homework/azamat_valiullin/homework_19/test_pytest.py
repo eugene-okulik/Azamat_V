@@ -106,6 +106,6 @@ def test_delete_gadget(new_gadget_id, method_test_indicator):
 
 
 # Commands for running the tests
-# pytest -vs task_pytest.py
-# pytest -vs task_pytest.py -m critical
-# pytest -vs task_pytest.py -m medium
+# pytest -vs test_pytest.py
+# pytest -vs test_pytest.py -m critical
+# pytest -vs test_pytest.py -m medium
