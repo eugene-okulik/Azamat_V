@@ -16,7 +16,7 @@ NEGATIVE_DATA = [
 
 TEST_DATA_PUT = {
     "name": "Apple iPad Air",
-    "data":  {"Generation": "4th", "Price": "519.99", "Capacity": "255 GB", "color": "silver"}
+    "data": {"Generation": "4th", "Price": "519.99", "Capacity": "255 GB", "color": "silver"}
 }
 
 TEST_DATA_PATCH = {"name": "Apple IPhone"}
