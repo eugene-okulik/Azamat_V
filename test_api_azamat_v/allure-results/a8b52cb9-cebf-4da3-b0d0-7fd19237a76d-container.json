@@ -1,0 +1,1 @@
+{"uuid": "7758d0d7-99ec-4ad4-b700-3286fc7e6c4b", "children": ["6bac22d0-cedb-44e2-bea2-8b1dee48159a"], "befores": [{"name": "get_all_gadgets_endpoint", "status": "passed", "start": 1719482836618, "stop": 1719482836618}], "start": 1719482836618, "stop": 1719482837171}
