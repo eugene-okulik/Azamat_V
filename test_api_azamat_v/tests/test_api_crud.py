@@ -47,6 +47,7 @@ def test_get_all_gadgets(get_all_gadgets_endpoint):
 @allure.story("New gadget creation")
 @allure.title("Creating new gadgets with valid data")
 @pytest.mark.parametrize("data", TEST_DATA)
+@pytest.mark.critical
 def test_add_gadget(create_gadget_endpoint, data):
     create_gadget_endpoint.add_new_gadget(payload=data)
     create_gadget_endpoint.response_name_verification(data["name"])
@@ -58,6 +59,7 @@ def test_add_gadget(create_gadget_endpoint, data):
 @allure.story("New gadget creation")
 @allure.title("Creating new gadgets with invalid data")
 @pytest.mark.parametrize("data", NEGATIVE_DATA)
+@pytest.mark.critical
 def test_add_gadget_with_negative_data(create_gadget_endpoint, data):
     create_gadget_endpoint.add_new_gadget(payload=data)
     create_gadget_endpoint.response_name_verification(data["name"])
@@ -69,6 +71,7 @@ def test_add_gadget_with_negative_data(create_gadget_endpoint, data):
 @allure.feature("Put request")
 @allure.story("Edit an existing gadget")
 @allure.title("Adding information about a gadget")
+@pytest.mark.medium
 def test_update_one_gadget(update_gadget_endpoint, new_gadget_id_endpoint):
     update_gadget_endpoint.make_changes_in_gadget(new_gadget_id_endpoint, TEST_DATA_PUT)
     update_gadget_endpoint.add_new_item_verification(TEST_DATA_PUT["data"]["color"])
@@ -79,6 +82,7 @@ def test_update_one_gadget(update_gadget_endpoint, new_gadget_id_endpoint):
 @allure.feature("Patch request")
 @allure.story("Edit an existing gadget")
 @allure.title("Changing the gadget name")
+@pytest.mark.medium
 def test_update_gadget_name(update_gadget_item_endpoint, new_gadget_id_endpoint):
     update_gadget_item_endpoint.update_gadget_name(new_gadget_id_endpoint, TEST_DATA_PATCH)
     update_gadget_item_endpoint.response_name_verification(TEST_DATA_PATCH["name"])
