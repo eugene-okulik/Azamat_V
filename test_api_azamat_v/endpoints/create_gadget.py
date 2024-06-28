@@ -16,3 +16,7 @@ class CreateGadget(BaseEndpoint):
         self.json = self.response.json()
         self.gadget_id = self.json['id']
         return self.response
+
+    @allure.step("Make sure that the new gadget id is exist")
+    def gadget_id_exists(self):
+        assert self.json["id"] is not None, "The gadget id isn't returned"

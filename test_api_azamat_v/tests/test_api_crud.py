@@ -52,6 +52,7 @@ def test_add_gadget(create_gadget_endpoint, data):
     create_gadget_endpoint.add_new_gadget(payload=data)
     create_gadget_endpoint.response_name_verification(data["name"])
     create_gadget_endpoint.check_that_status_is_200()
+    create_gadget_endpoint.gadget_id_exists()
 
 
 @allure.epic("API CRUD verification")
@@ -64,7 +65,7 @@ def test_add_gadget_with_negative_data(create_gadget_endpoint, data):
     create_gadget_endpoint.add_new_gadget(payload=data)
     create_gadget_endpoint.response_name_verification(data["name"])
     create_gadget_endpoint.check_that_status_is_200()
-    create_gadget_endpoint.gadget_id_existing()
+    create_gadget_endpoint.gadget_id_exists()
 
 
 @allure.epic("API CRUD verification")

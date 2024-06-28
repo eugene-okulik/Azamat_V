@@ -15,3 +15,7 @@ class UpdateGadget(BaseEndpoint):
         )
         self.json = self.response.json()
         return self.response
+
+    @allure.step("Make sure that the new item is added to the response body")
+    def add_new_item_verification(self, color):
+        assert self.json["data"]["color"] == color, "The color isn't exist"
