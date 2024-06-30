@@ -5,7 +5,7 @@ class BaseEndpoint:
     url = "https://api.restful-api.dev/objects"
     response = None
     json = None
-    headers = {"Content_Type": "application/json"}
+    headers = {"Content-Type": "application/json"}
     gadget_id = None
 
     @allure.step("Make sure that the name is the same as sent in the response")
