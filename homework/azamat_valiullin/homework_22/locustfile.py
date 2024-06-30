@@ -23,12 +23,12 @@ class Gadgets(HttpUser):
         self.client.post(
             "/objects",
             json={
-                  "name": "Apple iPad Air",
-                  "data": {
-                      "Generation": "4th",
-                      "Price": "519.99",
-                      "Capacity": "256 GB"
-                  }
+                "name": "Apple iPad Air",
+                "data": {
+                    "Generation": "4th",
+                    "Price": "519.99",
+                    "Capacity": "256 GB"
+                }
             },
             headers={"Content-Type": "application/json"}
         )
@@ -38,13 +38,13 @@ class Gadgets(HttpUser):
         self.client.put(
             "/objects/10",
             json={
-                  "name": "Apple iPad Air",
-                  "data": {
-                      "Generation": "4th",
-                      "Price": "519.99",
-                      "Capacity": "256 GB",
-                      "color": "silver"
-                  }
+                "name": "Apple iPad Air",
+                "data": {
+                    "Generation": "4th",
+                    "Price": "519.99",
+                    "Capacity": "256 GB",
+                    "color": "silver"
+                }
             },
             headers={"Content-Type": "application/json"}
         )
