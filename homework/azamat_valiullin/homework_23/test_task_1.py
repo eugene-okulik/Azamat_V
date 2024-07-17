@@ -21,3 +21,4 @@ def test_text_field_verification(driver):
     text_string.send_keys(Keys.ENTER)
     result_text = driver.find_element(By.ID, "result-text")
     assert result_text.text == input_data, "The text doesn't match"
+    print(f"Your entered text: {result_text.text}")
