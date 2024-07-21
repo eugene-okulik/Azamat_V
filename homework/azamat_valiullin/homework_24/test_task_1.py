@@ -37,6 +37,6 @@ def test_phone_verification(driver):
         (By.XPATH, "(//a[@id='cartur'])"))
     ).click()
     element_cart = WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-            (By.XPATH, "(//tr[@class='success']//td[contains(text(), 'Samsung galaxy s6')])"))
+        (By.XPATH, "(//tr[@class='success']//td[contains(text(), 'Samsung galaxy s6')])"))
     )
     assert element_cart.text in selected_phone
