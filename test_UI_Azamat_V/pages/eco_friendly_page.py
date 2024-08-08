@@ -90,7 +90,8 @@ class EcoFriendlyPage(BasePage):
         selected_items = self.item_details
         items_in_cart = self.cart_item_details
         for key in selected_items:
-            assert selected_items[key] == items_in_cart[key], f"{key} mismatch: {selected_items[key]} != {items_in_cart[key]}"
+            assert selected_items[key] == items_in_cart[key], \
+                f"{key} mismatch: {selected_items[key]} != {items_in_cart[key]}"
 
     @allure.step("Make sure that the added product item is in the compare products list")
     def compare_products_list_verification(self):
