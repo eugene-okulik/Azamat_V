@@ -1,0 +1,7 @@
+first_name_loc = "firstname"
+last_name_loc = "lastname"
+email_field_loc = "email_address"
+password_field_loc = "password"
+password_confirmation_field_loc = "password-confirmation"
+submit_button_loc = "(//button[@title='Create an Account'])"
+invalid_email_message_loc = "email_address-error"
