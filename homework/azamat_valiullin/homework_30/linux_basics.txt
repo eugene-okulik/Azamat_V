@@ -20,4 +20,4 @@ Task 3
 /etc/passwd -> -rw-r--r-- -> regular file -> файл
 /proc/mounts -> lrwxrwxrwx -> Symbolic Link (l) -> Символьные ссылки
 /bin/ls -> -rwxr-xr-x -> regular file -> файл
-/bin/zcat -> -rwxr-xr-x -> regular file -> файл
+/bin/zcat -> -rwxr-xr-x -> regular file -> файл.
