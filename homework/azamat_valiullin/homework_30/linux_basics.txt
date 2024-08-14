@@ -1,0 +1,23 @@
+Task 2.
+
+g  <  ESC-<       *  Go to first line in file (or line N).
+G  >  ESC->       *  Go to last line in file (or line N).
+f  ^F  ^V  SPACE  *  Forward  one window (or N lines).
+ e  ^E  j  ^N  CR  *  Forward  one line   (or N lines).
+y  ^Y  k  ^K  ^P  *  Backward one line   (or N lines).
+/pattern          *  Search forward for (N-th) matching line.
+?pattern          *  Search backward for (N-th) matching line.
+n                 *  Repeat previous search (for N-th occurrence).
+N                 *  Repeat previous search in reverse direction.
+
+Task 3
+
+/dev/null -> crw-rw-rw- > character special file (c) -> Символьные устройства
+/dev/zero -> crw-rw-rw- > character special file (c) -> Символьные устройства
+/dev/sda -> No such file or directory -> brw-rw---- -> Block device file -> Блочные устройства
+/dev/tty -> crw-rw-rw- > character special file (c) -> Символьные устройства
+/root -> directory -> каталог
+/etc/passwd -> -rw-r--r-- -> regular file -> файл
+/proc/mounts -> lrwxrwxrwx -> Symbolic Link (l) -> Символьные ссылки
+/bin/ls -> -rwxr-xr-x -> regular file -> файл
+/bin/zcat -> -rwxr-xr-x -> regular file -> файл.
